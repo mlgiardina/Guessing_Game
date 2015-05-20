@@ -2,6 +2,7 @@ class GuessingGame
 
   def initialize
     @still_playing = true
+    @guess_counter = 1
   end
 
   def new_computer_number
@@ -12,6 +13,10 @@ class GuessingGame
     new_computer_number
     get_user_guess
     while @still_playing == true
+      if @guess_counter > 5
+        puts "You lose."
+        exit
+      end
       compare_numbers
     end
   end
@@ -19,6 +24,7 @@ class GuessingGame
   def get_user_guess
     puts "Guess a number between 0 and 100."
     @user_guess = gets.chomp.to_i
+    @guess_counter += 1
   end
 
   def compare_numbers
