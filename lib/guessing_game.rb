@@ -1,4 +1,5 @@
 class GuessingGame
+  attr_reader :computer_number
 
   def initialize
     @still_playing = true
@@ -55,3 +56,5 @@ class GuessingGame
     end
   end
 end
+# new_game = GuessingGame.new
+# new_game.start
