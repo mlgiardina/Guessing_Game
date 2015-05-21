@@ -17,9 +17,9 @@ class GuessingGame
     while @still_playing == true
       get_user_guess
       check_useless_guess
-      compare_numbers
       system("clear")
       check_guess_counter
+      compare_numbers
       display_guesses
     end
   end
@@ -27,13 +27,14 @@ class GuessingGame
   def start
     new_computer_number
     playing
-    replay
   end
 
   def check_guess_counter
     if @guess_counter > 4
       @still_playing = false
       puts "You lose. The computer's number was #{@computer_number}"
+      display_guesses
+      replay
     end
   end
 
@@ -64,21 +65,21 @@ class GuessingGame
       puts "That's correct. You win!"
       @still_playing = false
       sleep 1.5
+      display_guesses
+      replay
     end
   end
 
   def check_useless_guess
     if @response == "high" && @too_high.any? {|past_guesses| @user_guess > past_guesses}
       puts "That was useless. You already know the number is lower than that."
-      sleep 1
     elsif @response == "low" && @too_low.any? {|past_guesses| @user_guess < past_guesses}
       puts "That was useless. You already know the number is higher than that."
-      sleep 1
     end
   end
 
   def display_guesses
-    puts "Your previous guesses are:\nToo High: #{@too_high}\nToo Low: #{@too_low}."
+    puts "Your previous guesses are:\nToo High: #{@too_high.sort}\nToo Low: #{@too_low.sort}."
   end
 
 
