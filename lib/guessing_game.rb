@@ -67,6 +67,7 @@ class GuessingGame
     if @guess_tracker.any? { |past_guess| past_guess == @user_guess }
       puts "Come on, #{@user_name}, you already guessed that. Try something new."
       @guess_counter += 1
+      sleep 1.5
     else
       @guess_tracker.push(@user_guess)
       @guess_counter += 1
@@ -97,8 +98,10 @@ class GuessingGame
   def check_useless_guess
     if @response == "high" && @too_high.any? {|past_guesses| @user_guess > past_guesses}
       puts "Seriously, #{@user_name}? You already know the number is lower than that. Use your head."
+      sleep 1.5
     elsif @response == "low" && @too_low.any? {|past_guesses| @user_guess < past_guesses}
       puts "Seriously, #{@user_name}? You already know the number is higher than that. Use your head."
+      sleep 1.5
     end
   end
 
@@ -130,4 +133,4 @@ class GuessingGame
 end
 
 new_game = GuessingGame.new
-new_game.start
+new_game.start#
