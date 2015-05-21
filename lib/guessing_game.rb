@@ -20,8 +20,11 @@ class GuessingGame
       get_user_guess
       check_useless_guess
       system("clear")
-      check_guess_counter
+
       compare_numbers
+
+      check_guess_counter
+
       display_guesses
     end
   end
@@ -72,12 +75,12 @@ class GuessingGame
 
   def compare_numbers
     if @user_guess > @computer_number
-      puts "Your guess was too high. Guess again."
+      puts "Your guess was too high."
       @response = "high"
       @too_high.push(@user_guess)
       sleep 1.5
     elsif @user_guess < @computer_number
-      puts "Your guess was too low. Guess again."
+      puts "Your guess was too low."
       @response = "low"
       @too_low.push(@user_guess)
       sleep 1.5
@@ -86,9 +89,9 @@ class GuessingGame
       @still_playing = false
       @user_score += 1
       sleep 1.5
-      display_guesses
       replay
     end
+
   end
 
   def check_useless_guess
@@ -112,12 +115,16 @@ class GuessingGame
       @guess_counter = 0
       @guess_tracker = []
       @game_count += 1
+      @too_high = []
+      @too_low = []
       start
     elsif play_again == "n"
       puts "Thank you for playing!"
       exit
     else
-      puts "That's not a valid response."
+      puts "That's not a valid response. Please enter 'y' or 'n'"
+      sleep 1
+      replay
     end
   end
 end
