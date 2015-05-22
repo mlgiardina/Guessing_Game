@@ -18,7 +18,7 @@ class GuessingGameTest < Test::Unit::TestCase
     @game.user_guess = 10
     @game.computer_number = 20
     result = @game.compare_numbers
-    assert_equal("Your guess was too low. Guess again.", result)
+    assert_equal("Your guess was too low.", result)
   end
 
   def test_guess_counter

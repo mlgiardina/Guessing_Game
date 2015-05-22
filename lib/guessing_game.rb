@@ -16,15 +16,14 @@ class GuessingGame
   end
 
   def playing
+    start
+    new_computer_number
     while @still_playing == true
       get_user_guess
       check_useless_guess
       system("clear")
-
       compare_numbers
-
       check_guess_counter
-
       display_guesses
     end
   end
@@ -34,7 +33,7 @@ class GuessingGame
     puts """
     Welcome to The Number Guessing Game. Here are the rules:
 
-    1.) The computer picks a random number between 0 and 100
+    1.) The computer picks a random number between 0 and 100.
     2.) You get 5 guesses. After that, you lose!
 
     And that's it!
@@ -42,8 +41,6 @@ class GuessingGame
     What's your name, friend?
 """
     @user_name = gets.chomp
-    new_computer_number
-    playing
   end
 
   def check_guess_counter
@@ -120,7 +117,7 @@ class GuessingGame
       @game_count += 1
       @too_high = []
       @too_low = []
-      start
+      playing
     elsif play_again == "n"
       puts "Thank you for playing!"
       exit
@@ -132,5 +129,3 @@ class GuessingGame
   end
 end
 
-new_game = GuessingGame.new
-new_game.start#
